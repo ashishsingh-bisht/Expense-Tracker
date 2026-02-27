@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Expense Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h1>💰 Smart Finance Dashboard</h1>
+
+  <div class="top-bar">
+    <button onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    <input type="month" id="monthFilter" onchange="filterByMonth()">
+    <button onclick="exportCSV()">Export CSV</button>
+  </div>
+
+  <div class="summary">
+    <div>Income: ₹<span id="income">0</span></div>
+    <div>Expense: ₹<span id="expense">0</span></div>
+    <div>Balance: ₹<span id="balance">0</span></div>
+  </div>
+
+  <div class="form">
+    <input type="text" id="desc" placeholder="Description">
+    <input type="number" id="amount" placeholder="Amount">
+    <select id="type">
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+    <button onclick="addTransaction()">Add</button>
+  </div>
+
+  <canvas id="financeChart"></canvas>
+
+  <ul id="list"></ul>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
