@@ -1,57 +1,72 @@
-let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
-
-const expenseList = document.getElementById("expenseList");
-const totalAmount = document.getElementById("totalAmount");
-
-function saveToLocalStorage() {
-  localStorage.setItem("expenses", JSON.stringify(expenses));
+body{
+font-family:Arial;
+background:#f5f7fb;
+display:flex;
+justify-content:center;
 }
 
-function updateTotal() {
-  let total = expenses.reduce((sum, expense) => sum + expense.amount, 0);
-  totalAmount.innerText = "₹" + total;
+.container{
+width:420px;
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 25px rgba(0,0,0,0.1);
 }
 
-function renderExpenses() {
-  expenseList.innerHTML = "";
-
-  expenses.forEach((expense, index) => {
-    const li = document.createElement("li");
-
-    li.innerHTML = `
-      ${expense.description} - ₹${expense.amount} (${expense.category})
-      <button class="delete-btn" onclick="deleteExpense(${index})">X</button>
-    `;
-
-    expenseList.appendChild(li);
-  });
-
-  updateTotal();
+h1{
+text-align:center;
 }
 
-function addExpense() {
-  const description = document.getElementById("description").value;
-  const amount = parseFloat(document.getElementById("amount").value);
-  const category = document.getElementById("category").value;
-
-  if (description === "" || isNaN(amount)) {
-    alert("Please enter valid details");
-    return;
-  }
-
-  expenses.push({ description, amount, category });
-
-  saveToLocalStorage();
-  renderExpenses();
-
-  document.getElementById("description").value = "";
-  document.getElementById("amount").value = "";
+.dashboard{
+display:flex;
+justify-content:space-between;
+margin-bottom:15px;
 }
 
-function deleteExpense(index) {
-  expenses.splice(index, 1);
-  saveToLocalStorage();
-  renderExpenses();
+.card{
+flex:1;
+padding:10px;
+margin:5px;
+border-radius:8px;
+color:white;
+text-align:center;
 }
 
-renderExpenses();
+.balance{background:#333}
+.income{background:#28a745}
+.expense{background:#dc3545}
+
+input,select{
+width:100%;
+padding:8px;
+margin:5px 0;
+}
+
+button{
+width:100%;
+padding:10px;
+background:black;
+color:white;
+border:none;
+margin-top:10px;
+cursor:pointer;
+}
+
+ul{
+list-style:none;
+padding:0;
+}
+
+li{
+display:flex;
+justify-content:space-between;
+background:#eee;
+padding:8px;
+margin:5px 0;
+border-radius:6px;
+}
+
+.delete{
+color:red;
+cursor:pointer;
+}
